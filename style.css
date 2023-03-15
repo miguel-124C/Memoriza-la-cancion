@@ -1,0 +1,114 @@
+:root{
+    --color-principal: #ffff00;
+    --color-secundario: #ff0080;
+}
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+body{
+    background: var(--color-secundario);
+}
+.header{
+    position: absolute;
+    top: 0;
+    background: var(--color-principal);
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .5s;
+}
+
+#info-game{
+    width: 70%;
+    text-align: center;
+    font-weight: 900;
+    font-size: 1.5em;
+}
+#info-game::selection{
+    background: #000;
+    color: #fff;
+}
+#btn-start-game{
+    cursor: pointer;
+    position: absolute;
+    bottom: 5px;
+    width: 100px;
+    height: 30px;
+    font-size: 1.3em;
+    background: #000;
+    color: var(--color-principal);
+    border-radius: 10px;
+    transition: .5s;
+}
+#btn-start-game:hover{
+    color: #fff;
+}
+
+#main{
+    height: 100vh;
+    display: none;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+#max-score,#score,.btn-again{
+    font-size: 1.5em;
+    position: absolute;
+    top: 5px;
+    background: #000;
+    color: #fff;
+}
+#max-score{
+    right: 5px;
+}
+#score{
+    left: 5px;
+}
+
+#contain-Game{
+    display: grid;
+    background: black;
+    outline: 5px solid black;
+    width: 615px;
+    height: 515px;
+    gap: 5px;
+    grid-template-columns: repeat(4,150px);
+    grid-template-rows: repeat(4,125px);
+}
+.item-grid{
+    background: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.paint{
+    animation: resaltar forwards .5s;
+}
+@keyframes resaltar {
+    0%{
+        transform:scale(1);
+    }
+    100%{
+        transform: scale(1.1);
+        border: 5px solid white;
+    }
+}
+.img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.btn-again{
+    display: none;
+    cursor: pointer;
+    width: 180px;
+    right: calc(50% - (180px / 2));
+}
