@@ -110,5 +110,30 @@ body{
     display: none;
     cursor: pointer;
     width: 180px;
+    top: 50%;
     right: calc(50% - (180px / 2));
+}
+@media screen and (max-width:720px) {
+    #contain-Game{
+        width: 415px;
+        height: 415px;
+        grid-template-columns: repeat(4,100px);
+        grid-template-rows: repeat(4,100px);
+    }
+}
+@media screen and (max-width:480px) {
+    #contain-Game{
+        width: 315px;
+        height: 315px;
+        grid-template-columns: repeat(4,75px);
+        grid-template-rows: repeat(4,75px);
+    }
+}
+@media screen and (max-width:340px) {
+    #contain-Game{
+        width: 250px;
+        height: 250px;
+        grid-template-columns: repeat(4,58.75px);
+        grid-template-rows: repeat(4,58.75px);
+    }
 }
