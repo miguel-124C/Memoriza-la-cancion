@@ -9,13 +9,13 @@ const textMaxScore = document.getElementById("max-score");
 let maxScore = 0;
 let score=0;
 let iteradores = [];
-let it = 0;
+let nextSound = 0;
 let clickUser = 0;
 let elementos = [];
 let play = false;
-let win = true;
 
 const startMusic=()=>{
+    textScore.firstElementChild.textContent = score;
     play = false;
     if(btnAgain.style.display == "block")btnAgain.style.display = "none";
     let i = Math.floor(Math.random()*3);
@@ -23,9 +23,7 @@ const startMusic=()=>{
     iteradores.push([`${i}${j}`]);
     for(let h=0;h<iteradores.length;h++){
         for (const chil of containGame.children) {
-            if(chil.classList.item(1) == iteradores[h]){
-                elementos.push(chil);
-            }
+            if(chil.classList.item(1) == iteradores[h]) elementos.push(chil);
         };
     }
     pintar(elementos);
@@ -47,32 +45,35 @@ function pintar(elemento){
 }
 const seleccionado=(chil)=>{
     chil.classList.add("paint");
+    const audio = new Audio(`sonidos/${chil.classList.item(1)}.mp3`);
+    audio.play();
     setTimeout(() => {
-        chil.classList.remove("paint")
+        chil.classList.remove("paint");
+        audio.pause();
     }, 500);
 }
-const showMaxScore=(s)=>{
-    if(s > maxScore){
-        maxScore = s;
+const showMaxScore=(score)=>{
+    if(score > maxScore){
+        maxScore = score;
         textMaxScore.firstElementChild.textContent = maxScore;
     }
 }
 const verificarClick=(chil)=>{
-    if(iteradores[it] == chil.classList.item(1)){
+    if(iteradores[nextSound] == chil.classList.item(1)){
         clickUser++;
-        it++;
+        nextSound++;
         score++;
         textScore.firstElementChild.textContent = score;
         if(clickUser == iteradores.length){
             clickUser = 0;
-            it = 0;
+            nextSound = 0;
             startMusic();
         }
     }else{
         play = false;
         showMaxScore(score);
         clickUser = 0;
-        it = 0;
+        nextSound = 0;
         score = 0;
         iteradores = [];
         while(elementos.length > 0)elementos.pop();
@@ -105,7 +106,5 @@ const startGame=()=>{
     main.style.display = "flex";
     startMusic();
 }
-
-
 
 btnStartGame.addEventListener("click",startGame);
